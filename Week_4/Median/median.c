@@ -7,7 +7,19 @@ struct node{
     struct node *next;
 };
 
-struct node *head;
+struct node *head = NULL;
+
+void DisplayLL()
+{
+    struct node *ptr;
+    ptr = head;
+    while(ptr != NULL){
+        printf("Node val=%d\n",ptr->data);
+
+        ptr = ptr -> next;
+    }
+    printf("\n\n");
+}
 
 int main()
 {
@@ -85,5 +97,7 @@ int main()
         ptr = ptr->next;
     }
 
+    printf("\n");
+    DisplayLL();
 
 }
