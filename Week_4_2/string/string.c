@@ -80,13 +80,50 @@ int main()
         else if(arr[i] == 'D'){
             i++;
             if(arr[i] == 'F'){
-
+                ptr = head->next;
+                head->next = NULL;
+                ptr->prev = NULL;
+                free(head);
+                head = ptr;
             }
             else if(arr[i] == 'A'){
+                i++;
+                ptr = head;
+                for(j=0 ; j<toInt(arr[i]) ; j++){
+                    if(ptr==NULL){
+                        break;
+                    }
+                    else{
+                        ptr = ptr->next;
+                    }
+                }
+                if(ptr!=NULL){
+                    if(ptr->prev == NULL){
+                        head = ptr->next;
+                    }
+                    else{
+                        ptr->prev->next = ptr->next;
+                    }
 
+                    if(ptr->next == NULL){
+                        tail = ptr->prev;
+                    }
+                    else{
+                        ptr->next->prev = ptr->prev;
+                    }
+
+                    ptr->prev = NULL;
+                    ptr->next = NULL;
+
+                    free(ptr);
+                }
             }
             else if(arr[i] == 'L'){
-
+                ptr = tail->prev;
+                tail->prev = NULL;
+                ptr->next = NULL;
+                free(tail);
+                tail = ptr;
             }
         }
         else if(arr[i] == 'P'){
@@ -106,7 +143,22 @@ int main()
             printf("\n\n");
         }
         else if(arr[i] == 'S'){
-
+            i++;
+            ptr = head;
+            for(j=1 ; ptr != tail ; j++){
+                if(toInt(arr[i]) == ptr->data){
+                    printf("%d",j);
+                    j = 0;
+                    break;
+                }
+                else{
+                    ptr = ptr->next;
+                }
+                
+            }
+            if(j != 0){
+                printf("-1");
+            }
         }
     }
 }
