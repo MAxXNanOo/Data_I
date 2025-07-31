@@ -90,7 +90,31 @@ int main()
 
       // fill-in your code for deleting node with the specific name
       k = hash2(name, m);
-      hash_table[k] = NULL;
+      ptr = hash_table[k];
+      preptr = NULL;
+      
+      while(ptr){
+
+        if(!strcmp(ptr->name , name)){
+          if(preptr == NULL){
+            hash_table[k] = ptr->next;
+            free(ptr);
+          }
+          else if(ptr->next == NULL){
+            preptr->next = NULL;
+            free(ptr);
+          }
+          else{
+            preptr->next = ptr->next;
+            free(ptr);
+          }
+          break;
+        }
+        else{
+          preptr = ptr;
+          ptr = ptr->next;
+        }
+      }
     }
     else if (n == 3) // search
     {
