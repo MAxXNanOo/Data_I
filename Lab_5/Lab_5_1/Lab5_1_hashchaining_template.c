@@ -17,17 +17,8 @@ void insertChain(int value)
   new_node->data = value;
   new_node->next=NULL;
 
-  int h = value % Size;
-  struct node *ptr=hash_table[h];
-  if(!ptr){
-    hash_table[h] = new_node;
-  }
-  else{
-    new_node->next = hash_table[h];
-    hash_table[h] = new_node;
-    // printf("INPUT %d   ",value);
-  }
-
+  new_node->next = hash_table[value%Size];
+  hash_table[value%Size] = new_node;
 }
 
 void printChain()
