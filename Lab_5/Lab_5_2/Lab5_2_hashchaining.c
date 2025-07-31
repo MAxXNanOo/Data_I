@@ -65,17 +65,13 @@ void printChain()
 
 
 int search_item(int x){
-  struct node *ptr;
-  int i;
-
-  for(i=0 ; i<Size ; i++){
-    ptr = hash_table[i];
-    while(ptr){
-      if(ptr->data == x){
+  struct node *ptr = hash_table[x%Size];
+  int i=0;
+  while(ptr){
+    i++;
+    if(ptr->data == x)
         return i;
-      }
-      ptr = ptr->next;
-    }
+    ptr = ptr->next;
   }
   return -1;
 }
@@ -100,7 +96,7 @@ int main()
 //  insertChain(24);
  printChain();
 
-     
+
     printf("%d\n",search_item(15));
     printf("%d\n",search_item(50));
 
