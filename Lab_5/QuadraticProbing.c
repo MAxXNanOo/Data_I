@@ -7,7 +7,7 @@ int h(int k) //for generate hash function
 }
 void setHash(int n) //for insert number in hash table
 {
-    int index,check=1;
+    int index,check=0;
     index=h(n); //call genHashFn
 
     printf("%d mod 10 = %d\n",n,index);
@@ -16,22 +16,25 @@ void setHash(int n) //for insert number in hash table
         if(hashArray[(index+i*i)%10] == n)
         {
             printf("Duplicate number!\n");
-            check=0;
+
             break;
         }
         else if(hashArray[(index+i*i)%10] == 0)
         {
             hashArray[(index+i*i)%10] = n;
             printf("  Put %d in H[%d]\n",n,index+i*i);
-            check=0;
             break;
         }
         else
         {
             printf(" (%d+%d)mod 10 == %d\n",index,(i+1)*(i+1),(index+(i+1)*(i+1))%10);
         }
+
+        if(hashArray[i] != 0)
+            check++;
+        else()
     }
-    if(check){
+    if(check == 10){
         printf("Hash Table is full!\n");
     }
 }
