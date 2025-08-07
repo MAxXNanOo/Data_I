@@ -32,7 +32,6 @@ void setHash(int n) //for insert number in hash table
 
         if(hashArray[i] != 0)
             check++;
-        else()
     }
     if(check == 10){
         printf("Hash Table is full!\n");
