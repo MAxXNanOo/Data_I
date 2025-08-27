@@ -23,7 +23,7 @@ int main()
         if(num[i] > max)
             max = num[i];
     }
-    // printf("\nMax = %d \n",max);
+    // printf("\nMax = %d \n",max);m,
     while(max != 0){
         unit++;
         max/=10;
