@@ -12,7 +12,7 @@ int size=0;
 int main()
 {
     char arr[50];
-    scanf("%s",&arr);
+    scanf("%c",&arr);
 
 
     for(int i=0 ; arr[i] != '\0'; i++){
@@ -34,18 +34,21 @@ int main()
             case ')':
             case ']':
             case '}':
-
-                if(!Top){
+            
+            if(!Top){
                     printf("-1");
                     return -1;
                 }
-                   
+                
                 switch(arr[i]){
                     case ')':
                         if(Top->data == '('){
                             Top = Top->next;
+                            size--;
+                            printf("del");
                         }
                         else{
+
                             printf("%d",size);
                             return -1;
                         }
@@ -54,6 +57,7 @@ int main()
                     case ']':
                         if(Top->data == '['){
                             Top = Top->next;
+                            size--;
                         }
                         else{
                             printf("%d",size);
@@ -62,8 +66,9 @@ int main()
                     break;
 
                     case '}':
-                        if(Top->data == '['){
+                        if(Top->data == '{'){
                             Top = Top->next;
+                            size--;
                         }
                         else{
                             printf("%d",size);
@@ -122,7 +127,7 @@ int main()
         }
     }
     if(Top){
-        printf("-1");
+        printf("%d",size);
     }
     else{
         printf("0");
