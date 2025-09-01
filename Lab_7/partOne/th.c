@@ -12,10 +12,10 @@ int size=0;
 int main()
 {
     char arr[50];
-    scanf("%c",&arr);
+    scanf("%s",&arr);
 
-
-    for(int i=0 ; arr[i] != '\0'; i++){
+    int i;
+    for(i=0 ; arr[i] != '\0'; i++){
         switch(arr[i])
         {
             case '(':
@@ -33,23 +33,21 @@ int main()
 
             case ')':
             case ']':
-            case '}':
-            
-            if(!Top){
+            case '}':{
+                
+                if(!Top){
                     printf("-1");
                     return -1;
                 }
-                
                 switch(arr[i]){
                     case ')':
                         if(Top->data == '('){
                             Top = Top->next;
                             size--;
-                            printf("del");
+                            printf("D (   ");
                         }
                         else{
-
-                            printf("%d",size);
+                            printf("-1");
                             return -1;
                         }
                     break;
@@ -58,9 +56,10 @@ int main()
                         if(Top->data == '['){
                             Top = Top->next;
                             size--;
+                            printf("D [   ");
                         }
                         else{
-                            printf("%d",size);
+                            printf("-1");
                             return -1;
                         }
                     break;
@@ -69,13 +68,15 @@ int main()
                         if(Top->data == '{'){
                             Top = Top->next;
                             size--;
+                            printf("D {   ");
                         }
                         else{
-                            printf("%d",size);
+                            printf("-1");
                             return -1;
                         }
                     break;
                 }
+            }
             break;
 
 
@@ -125,14 +126,24 @@ int main()
 
             // break;
         }
+
+     }
+
+
+    if(arr[i-1] == '\0'){
+        printf("-1");
     }
-    if(Top){
-        printf("%d",size);
+    else if(Top){
+        printf("Last %d",size);
     }
     else{
         printf("0");
     }
 
+    while(Top){
+        printf("%c ",Top->data);
+        Top = Top->next;
+    }
 
 
 //    printf("\n%s",arr);
