@@ -26,7 +26,7 @@ int main(){
 
             case '*':
             case '/':
-                while(arr[Top] == '^'){
+                while(arr[Top] == '^' || arr[Top] == '*' || arr[Top] == '/'){
                     ans[++ansTop] = arr[Top--];
                     // printf(" %c ",ans[ansTop]);
                 }
@@ -35,7 +35,7 @@ int main(){
 
             case '+':
             case '-':
-                while(arr[Top] == '^' || arr[Top] == '*' || arr[Top] == '/' ){
+                while(arr[Top] == '^' || arr[Top] == '*' || arr[Top] == '/' || arr[Top] == '+' || arr[Top] == '-' ){
                     ans[++ansTop] = arr[Top--];
                     // printf(" %c ",ans[ansTop]);
                 }
