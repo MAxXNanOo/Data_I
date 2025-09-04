@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 int main()
 {
@@ -24,6 +25,10 @@ int main()
 
                 case '/':
                     num[numTop-1] = num[numTop-1] / num[numTop ];
+                break;
+
+                case '^':
+                    num[numTop-1] = pow(num[numTop-1] , num[numTop ]);
                 break;
             }
             numTop--;
