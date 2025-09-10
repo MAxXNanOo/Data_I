@@ -4,45 +4,45 @@
 
 char T[MAXTREE]={'C'};   //Initialize Tree
 
-... LeftNode()
+char LeftNode(int k)
 {
-
+  return k*2+1;
 }
 
-... RightNode()
+char RightNode(int k)
 {
-
+  return k*2+2;
 }
 
-... MotherNode()
+int MotherNode(int k)
 {
-
+  return (k-1)/2;
 }
 
 bool isLeft(char k)
 {
-  if (k != 'C')
+  if (k%2 == 1)
     return true;
   return false;
 
 }
 bool isRight(char k)
 {
-  if (k != 'C')
+  if (k%2 == 0)
     return true;
   return false;
 
 }
 
-... SetLeft( k,  data)
+void SetLeft(int k, char data)
 {
     int index;
+    index = k*2 +1;
 
-
-    if()
+    if(index<=MAXTREE)
     {
-       if()
-
+       if(T[index] == '\0')
+        T[index] = data;
        else
          printf("Node Inused\n");
     }
@@ -50,15 +50,15 @@ bool isRight(char k)
       printf("Tree Overflow\n");
 }
 
-... SetRight( k,  data)
+void SetRight(int k, char data)
 {
      int index;
+      index = k*2 +2;
 
-
-    if()
+    if(index <= MAXTREE )
     {
-       if()
-
+       if(T[index] == '\0')
+        T[index] = data;
        else
          printf("Node Inused\n");
     }
