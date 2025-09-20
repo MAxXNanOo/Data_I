@@ -30,7 +30,7 @@ void Tree_insert( int data )
     }
         
     if(data <= ptr->data){
-        if(!ptr->leftChild){
+      if(!ptr->leftChild){
         ptr->leftChild = createNode(data);
         tmp = ptr->leftChild;
         tmp->mother = ptr;
@@ -87,47 +87,102 @@ struct Treenode * FindMax( struct Treenode * ptr)
   return ptr;
 }
 
+
+
 void Tree_delete(struct Treenode *ptr , int data)
 {
-    struct Treenode *x = Tree_Find(ptr, data);
-
-    // printf("taget = %d",taget->data);
-    if(!x){
-        printf("value is not found in the tree\n");
+  struct Treenode *x,*y;
+  x = Tree_Find(ptr, data);
+  if(!x){
+    printf("value is not found in the tree\n");
+  }
+  else{
+    
+    if(x->leftChild){
+      y = FindMax(x->leftChild);
+      x->data = y->data;
+      y->mother->rightChild = NULL;
+      free(y);
+    }
+    else if(x->rightChild){
+      y = FindMin(x->rightChild);
+      x->data = y->data;
+      y->mother->leftChild = NULL;
+      free(y);
     }
     else{
-        struct Treenode *tmpLeft=x->leftChild, *tmpRight = x->rightChild, *tmpMother = x->mother, *supertmp=NULL;
-
-        if(tmpLeft){
-            tmpLeft->mother = tmpMother;
-            tmpRight->mother = tmpLeft;
-            tmpLeft->rightChild = tmpRight;
-            supertmp = tmpLeft;
-
-            // if(tmpLeft->rightChild){
-            //     struct Treenode *new = Tree_insert(24);
-            //     new->mother = tmpLeft->rightChild->mother;
-            //     if(new->mother->leftChild = new){
-            //         new->mother->leftChild = tmpLeft->rightChild;
-            //     }else{
-            //         new->mother->rightChild = tmpLeft->rightChild;
-            //     }
-            // }
-        }
-
-        
-        if(x->data < tmpMother->data){
-            tmpMother->leftChild = supertmp;
-        }
-        else{
-            tmpMother->rightChild = supertmp;
-        }
-
-        x->mother = NULL;
-        x->leftChild = NULL;
-        x->rightChild = NULL;
+      if(x->mother->leftChild == x){
+        x->mother->leftChild = NULL;
+      }
+      else{
+        x->mother->rightChild = NULL;
+      }
+      free(x);
     }
+
+  }
 }
+
+
+
+// void Tree_delete(struct Treenode *ptr , int data)
+// {
+//   struct Treenode *x,*y;
+//   x = Tree_Find(ptr, data);
+//   if(!x){
+//     printf("value is not found in the tree\n");
+//   }
+//   else{
+//     y = x->leftChild;
+//     // printf("nig");
+//     // printf("y = %d", x->data);
+    
+//     if(x->leftChild){
+//       y->mother = x->mother;
+    
+//       if(x->mother->leftChild == x)
+//         x->mother->leftChild = y;
+//       else
+//         x->mother->rightChild = y;
+      
+//       x = x->rightChild;
+      
+
+//       while(1){
+//         if(x->data <= y->data){
+//           if(!y->leftChild){
+//             y->leftChild = x;
+//             break;
+//           }else{
+//             y = y->leftChild;
+//           }
+//         }
+//         else{
+//           if(!y->rightChild){
+//             y->rightChild = x;
+//             break;
+//           }
+//           else{
+//             y = y->rightChild;
+//           }
+//         }
+//       }
+//     }
+//     else if(x->rightChild){
+//       x->mother->leftChild = x->rightChild;
+//     }
+//     else{
+//       if(x->mother->leftChild == x){
+//         x->mother->leftChild = NULL;
+//       }
+//       else{
+//         x->mother->rightChild = NULL;
+//       }
+//     }
+
+
+//   }
+// }
 
 
 
@@ -140,8 +195,8 @@ int main()
   for(i=0;i<size;i++)
         Tree_insert(a[i]);
 
-   printf("Min=%d\n",FindMin(Root)->data);
-   printf("Max=%d\n",FindMax(Root)->data);
+  //  printf("Min=%d\n",FindMin(Root)->data);
+  //  printf("Max=%d\n",FindMax(Root)->data);
 
    struct Treenode *p;
    p=Tree_Find(Root,190);
@@ -151,7 +206,7 @@ int main()
      else
        printf("Not found\n");
    
-    Inorder(Root);
+    // Inorder(Root);
     printf("\n");
    Tree_delete(Root,190);
    Tree_delete(Root,26);
