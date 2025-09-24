@@ -115,20 +115,7 @@ void Tree_delete(struct Treenode *ptr , char data)
     printf("-1");
   }
   else{
-    if(x->leftChild){
-      y = FindMax(x->leftChild);
-      x->data = y->data;
-
-      if(y->mother->leftChild == y)
-        y->mother->leftChild = y->rightChild;
-      else
-        y->mother->rightChild = y->rightChild;
-
-      if(y->leftChild)
-        y->leftChild->mother = y->mother;
-      free(y);
-    }
-    else if(x->rightChild){
+     if(x->rightChild){
       y = FindMin(x->rightChild);
       x->data = y->data;
       

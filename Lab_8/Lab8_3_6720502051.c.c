@@ -71,22 +71,22 @@ int main()
 
         switch(input[size]){
             case '+':
-                    num[top-1] = num[top-1] + num[top];
+                    num[top-1] = num[top] + num[top-1];
                     top--;
                 break;
 
                 case '-':
-                    num[top-1] = num[top-1] - num[top];
+                    num[top-1] = num[top] - num[top-1];
                     top--;
                 break;
 
                 case '*':
-                    num[top-1] = num[top-1] * num[top];
+                    num[top-1] = num[top] * num[top-1];
                     top--;
                 break;
 
                 case '/':
-                    num[top-1] = num[top-1] / num[top];
+                    num[top-1] = num[top] / num[top-1];
                     top--;
                 break;
 
