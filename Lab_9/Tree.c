@@ -27,7 +27,7 @@ void Tree_insert( int data )
     if(!Root){
       Root = createNode(data);
       break;
-    }
+    }ddd
         
     if(data <= ptr->data){
       if(!ptr->leftChild){
