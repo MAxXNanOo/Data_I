@@ -1,5 +1,6 @@
 #include <stdio.h> 
 #include <stdlib.h> 
+#include <math.h>
 
 
 struct Treenode { 
@@ -29,6 +30,17 @@ int Height(struct Treenode *x){
     else{
         return x->ht;
     }
+}
+
+int setHeight(struct Treenode *node){
+  if(node){
+    node->ht = 1 + fmax(setHeight(node->leftChild), setHeight(node->rightChild));
+  }
+  else{
+    return 0;
+  }
+
+  return node->ht;
 }
 
 void Tree_insert( int data )
@@ -67,22 +79,7 @@ void Tree_insert( int data )
     }
 }
   
-  ptr = Root;
-  while(ptr){
-    if(ptr->data == data){
-        break;
-    }
-    else{
-        if(data < ptr->data){
-            ptr->ht = 1 + Height(ptr->leftChild);
-            ptr = ptr->leftChild;
-        }
-        else{
-            ptr->ht = 1 + Height(ptr->rightChild);
-            ptr = ptr->rightChild;
-        }
-    }
-  }
+  Root->ht = setHeight(Root);
 }
 
 

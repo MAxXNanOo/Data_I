@@ -3,7 +3,38 @@
 int n,head=-1,tail=-1,top=-1;      //number of vertices
 int S[max],Q[max];
 //stack functions & variables
+void push(int data){
+   if(top==max-1)
+      printf("stack ovrflow");
+   else{
+      top++;
+      S[top]=data;
+   }
+}
+
+int pop(){
+   if(top==-1)
+      printf("underflow");
+   else{
+      int data = S[top];
+      top--;
+      return data;
+   }
+}
 //queue functions & variables
+void enqueue(int data){
+      if(tail==max-1)
+         printf("overflow");
+      else{
+         if(tail==-1&&head==-1){
+            tail=0;
+            head=0;
+         }
+         else
+            tail++;
+         
+      }
+}
 
 void DFT(char *V,int G[][n],int status[]) //suggest list of parameter of function
 {
